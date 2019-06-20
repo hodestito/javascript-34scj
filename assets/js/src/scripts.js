@@ -48,14 +48,14 @@ const search = (function(){
     return {
 
         sendSearch: function(){
-            let searchTerm = document.querySelector("#searchTerm").value;
+            let searchTerm = document.querySelector("#searchTerm");
             fetch(url + `?search=${searchTerm.value}`)
             .then(response => response.json())
             .then(json => {
                 let searchResult = document.querySelector("#searchResult")
-                let result = json.map(item => (
-                    `<li>${item.title}</li>`
-                ))
+                let result = json.map(item => {
+                  return `<li>${item.title}</li>`
+                })
                 searchResult.innerHTML = result;
             })
             console.log("Search foi chamada");
